@@ -5,7 +5,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailPark extends StatelessWidget {
-  const DetailPark({Key? key}) : super(key: key);
+  String nama;
+  String lokasi;
+  String informasi;
+  String review;
+  String rating;
+  String image;
+  String longitude;
+  String latitude;
+  DetailPark(this.nama, this.lokasi, this.informasi, this.review, this.rating,
+      this.image, this.longitude, this.latitude);
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +28,12 @@ class DetailPark extends StatelessWidget {
               alignment: Alignment.topCenter,
               height: size.height - 300,
               width: size.width,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   alignment: Alignment.bottomRight,
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/wakatobi.jpeg'),
+                  image: NetworkImage(
+                      site_url + "assets/img/wisata/" + this.image),
                 ),
               ),
             ),
@@ -54,7 +64,10 @@ class DetailPark extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const ProductNameAndPrice(),
+                    ProductNameAndPrice(
+                      this.nama,
+                      this.lokasi,
+                    ),
                     const SizedBox(height: 16),
                     Container(
                       margin: EdgeInsets.only(top: 4),
@@ -63,7 +76,7 @@ class DetailPark extends StatelessWidget {
                         children: <Widget>[
                           Container(
                               child: Text(
-                            "4.5",
+                            this.rating,
                             style: TextStyle(
                                 color: Colors.orange,
                                 fontSize: 20.0,
@@ -73,7 +86,7 @@ class DetailPark extends StatelessWidget {
                             width: 8,
                           ),
                           RatingBar.builder(
-                            initialRating: 4.5,
+                            initialRating: double.parse(this.rating),
                             minRating: 1,
                             direction: Axis.horizontal,
                             allowHalfRating: true,
@@ -94,7 +107,7 @@ class DetailPark extends StatelessWidget {
                           ),
                           Container(
                               child: Text(
-                            "120",
+                            this.review,
                             style: TextStyle(
                                 color: Colors.orange,
                                 fontSize: 20.0,
@@ -114,7 +127,7 @@ class DetailPark extends StatelessWidget {
                     ),
                     const Spacing(),
                     Text(
-                      'Cagar alam pulau dengan terumbu karang dan kehidupan laut yang dilindungi serta situs menyelam yang terkenal dengan ikan pari dan paus sperma.',
+                      this.informasi,
                       style: bodyText.copyWith(color: Colors.white),
                     ),
                     const Spacing(),
@@ -253,9 +266,9 @@ class RectButton extends StatelessWidget {
 }
 
 class ProductNameAndPrice extends StatelessWidget {
-  const ProductNameAndPrice({
-    Key? key,
-  }) : super(key: key);
+  final String nama;
+  final String lokasi;
+  ProductNameAndPrice(this.nama, this.lokasi);
 
   @override
   Widget build(BuildContext context) {
@@ -266,12 +279,12 @@ class ProductNameAndPrice extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              'Pulau Wakatobi',
+              this.nama,
               style: h1Light.copyWith(color: Colors.white),
             ),
           ),
           Text(
-            'Wakatobi',
+            this.lokasi,
             style: h1Light.copyWith(
                 color: colorPrimary, fontWeight: FontWeight.w600),
           ),

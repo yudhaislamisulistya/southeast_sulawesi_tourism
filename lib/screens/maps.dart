@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:ui' as ui;
+import 'package:dio/dio.dart';
 
 class Maps extends StatefulWidget {
   @override
@@ -18,6 +19,8 @@ class Maps extends StatefulWidget {
 class MapsState extends State<Maps> {
   Completer<GoogleMapController> _controller = Completer();
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+  List<Meals> MEALS_DATA = [];
+
   @override
   void initState() {
     _add();
@@ -25,11 +28,26 @@ class MapsState extends State<Maps> {
   }
 
   void _add() async {
+    var dio = Dio();
+    var response = await dio.get(site_url + "apiv1/wisata");
+    var data = response.data['data'];
+    for (var i = 0; i < data.length; i++) {
+      Meals meals = Meals(
+          data[i]['nama'],
+          data[i]['id_wisata'],
+          data[i]['informasi'],
+          data[i]['file'],
+          data[i]['review'],
+          double.parse(data[i]['latitude']),
+          double.parse(data[i]['longitude']),
+          double.parse(data[i]['rating']));
+      MEALS_DATA.add(meals);
+    }
     for (int i = 0; i < MEALS_DATA.length; i++) {
       final MarkerId markerId = MarkerId(MEALS_DATA[i].id);
       final Marker marker = Marker(
         markerId: markerId,
-        position: LatLng(MEALS_DATA[i].lat, MEALS_DATA[i].long),
+        position: LatLng(MEALS_DATA[i].long, MEALS_DATA[i].lat),
         onTap: () {},
       );
       if (this.mounted)
@@ -135,7 +153,8 @@ class MapsState extends State<Maps> {
                           bottomLeft: Radius.circular(24)),
                       child: Image(
                         fit: BoxFit.fill,
-                        image: AssetImage(meals.image),
+                        image: NetworkImage(
+                            site_url + "assets/img/wisata/" + meals.image),
                       ),
                     ),
                   ),
@@ -249,7 +268,7 @@ class MapsState extends State<Maps> {
   Future<void> _gotoLocation(double lat, double long) async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-      target: LatLng(lat, long),
+      target: LatLng(long, lat),
       zoom: 10,
       tilt: 50.0,
       bearing: 45.0,

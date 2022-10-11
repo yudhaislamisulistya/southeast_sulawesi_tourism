@@ -20,8 +20,10 @@ class _AboutState extends State<About> {
         color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.w700);
     final _contentStyle = const TextStyle(
         color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.normal);
-    final _loremIpsum =
-        '''Lorem ipsum is typically a corrupted version of 'De finibus bonorum et malorum', a 1st century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin.''';
+    final _caraLihatMap =
+        '''Silahkan mengunjungi halaman dashboard atau map dan melihat melihat informasi pada map yang telah disediakan.''';
+    final _tentangAplikasi =
+        '''Aplikasi ini berjalan pada android minimal versi API 28.''';
     final _introduction =
         '''Aplikasi in sebuah aplikasi yang dirancang untuk menampilkan informasi parawisata didaerah sulawesi tenggarah. Aplikasi ini dibuat untuk memenuhi tugas akhir dari penelitian saya''';
     return Scaffold(
@@ -126,32 +128,7 @@ class _AboutState extends State<About> {
                       headerBackgroundColorOpened: colorPrimary,
                       header: Text('Bagaiamana Cara Lihat Map ?',
                           style: _headerStyle),
-                      content: Text(_loremIpsum, style: _contentStyle),
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                    ),
-                  ],
-                ),
-                Accordion(
-                  paddingListTop: 0,
-                  paddingListBottom: 0,
-                  maxOpenSections: 2,
-                  headerBackgroundColorOpened: Colors.black54,
-                  scaleWhenAnimating: true,
-                  openAndCloseAnimation: true,
-                  headerPadding:
-                      const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-                  sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-                  sectionClosingHapticFeedback: SectionHapticFeedback.light,
-                  children: [
-                    AccordionSection(
-                      isOpen: true,
-                      leftIcon: const Icon(Icons.room, color: Colors.white),
-                      headerBackgroundColor: Colors.black54,
-                      headerBackgroundColorOpened: colorPrimary,
-                      header: Text('Cara Mencari Destinasi Wisata ?',
-                          style: _headerStyle),
-                      content: Text(_loremIpsum, style: _contentStyle),
+                      content: Text(_caraLihatMap, style: _contentStyle),
                       contentHorizontalPadding: 20,
                       contentBorderWidth: 1,
                     ),
@@ -176,7 +153,7 @@ class _AboutState extends State<About> {
                       headerBackgroundColor: Colors.black54,
                       headerBackgroundColorOpened: colorPrimary,
                       header: Text('Tentang Aplikasi', style: _headerStyle),
-                      content: Text(_loremIpsum, style: _contentStyle),
+                      content: Text(_tentangAplikasi, style: _contentStyle),
                       contentHorizontalPadding: 20,
                       contentBorderWidth: 1,
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const site_url = "https://bellaariva.my.id/";
 const colorPrimary = Color(0xFF0C9869);
 const colorSecondary = Color(0xFF3DC1D3);
 const colorAccent = Color.fromARGB(255, 56, 56, 56);
