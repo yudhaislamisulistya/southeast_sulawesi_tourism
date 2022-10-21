@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:bella_app/constants.dart';
 import 'package:bella_app/models/meals.dart';
@@ -10,6 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:ui' as ui;
 import 'package:dio/dio.dart';
+import 'package:url_launcher/link.dart';
 
 class Maps extends StatefulWidget {
   @override
@@ -244,6 +246,20 @@ class MapsState extends State<Maps> {
             ),
           ),
         ),
+        Link(
+          uri: Uri.parse(
+              'https://www.google.com/maps/dir/?api=1&destination=${meals.name}'),
+          target: LinkTarget.blank,
+          builder: (context, followLink) {
+            return ElevatedButton(
+              onPressed: followLink,
+              child: Text("Direction"),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(colorPrimary),
+              ),
+            );
+          },
+        )
       ],
     );
   }

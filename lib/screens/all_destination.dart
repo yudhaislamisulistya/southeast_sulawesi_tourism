@@ -150,9 +150,9 @@ class _AllDestionationState extends State<AllDestionation> {
                           borderRadius: BorderRadius.circular(20.0),
                           child: Image(
                             width: 110.0,
-                            image: AssetImage(
-                              'assets/images/danau_biru.jpeg',
-                            ),
+                            image: NetworkImage(site_url +
+                                "assets/img/wisata/" +
+                                dataWisata[index]['file']),
                             fit: BoxFit.cover,
                           ),
                         ),
