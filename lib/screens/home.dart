@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bella_app/constants.dart';
 import 'package:bella_app/screens/about.dart';
 import 'package:bella_app/screens/dashboard.dart';
@@ -7,7 +9,7 @@ import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -17,17 +19,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   final _controller = PageController();
 
   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         controller: _controller,
-        children: <Widget>[
+        children: const <Widget>[
           Dashboard(),
           Maps(),
           About(),
@@ -37,7 +33,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       bottomNavigationBar: RollingBottomBar(
         controller: _controller,
         flat: true,
-        items: [
+        items: const [
           RollingBottomBarItem(
             Icons.home,
             label: 'Dashboard',
@@ -65,5 +61,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

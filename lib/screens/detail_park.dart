@@ -1,7 +1,8 @@
+// ignore_for_file: unnecessary_this, depend_on_referenced_packages, must_be_immutable, avoid_unnecessary_containers
+
 import 'package:bella_app/constants.dart';
 import 'package:bella_app/screens/maps.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailPark extends StatelessWidget {
@@ -13,8 +14,7 @@ class DetailPark extends StatelessWidget {
   String image;
   String longitude;
   String latitude;
-  DetailPark(this.nama, this.lokasi, this.informasi, this.review, this.rating,
-      this.image, this.longitude, this.latitude);
+  DetailPark(this.nama, this.lokasi, this.informasi, this.review, this.rating, this.image, this.longitude, this.latitude, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,7 @@ class DetailPark extends StatelessWidget {
                 image: DecorationImage(
                   alignment: Alignment.bottomRight,
                   fit: BoxFit.cover,
-                  image: NetworkImage(
-                      site_url + "assets/img/wisata/" + this.image),
+                  image: NetworkImage("${siteUrl}assets/img/wisata/${this.image}"),
                 ),
               ),
             ),
@@ -65,28 +64,25 @@ class DetailPark extends StatelessWidget {
                       ),
                     ),
                     ProductNameAndPrice(
-                      this.nama,
-                      this.lokasi,
+                      nama,
+                      lokasi,
                     ),
                     const SizedBox(height: 16),
                     Container(
-                      margin: EdgeInsets.only(top: 4),
+                      margin: const EdgeInsets.only(top: 4),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Container(
                               child: Text(
-                            this.rating,
-                            style: TextStyle(
-                                color: Colors.orange,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold),
+                            rating,
+                            style: const TextStyle(color: Colors.orange, fontSize: 20.0, fontWeight: FontWeight.bold),
                           )),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           RatingBar.builder(
-                            initialRating: double.parse(this.rating),
+                            initialRating: double.parse(rating),
                             minRating: 1,
                             direction: Axis.horizontal,
                             allowHalfRating: true,
@@ -94,24 +90,21 @@ class DetailPark extends StatelessWidget {
                             ignoreGestures: true,
                             itemSize: 35,
                             itemCount: 5,
-                            itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-                            itemBuilder: (context, _) => Icon(
+                            itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                            itemBuilder: (context, _) => const Icon(
                               Icons.star,
                               color: Colors.amber,
                               size: 10,
                             ),
                             onRatingUpdate: (double value) {},
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Container(
                               child: Text(
-                            this.review,
-                            style: TextStyle(
-                                color: Colors.orange,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold),
+                            review,
+                            style: const TextStyle(color: Colors.orange, fontSize: 20.0, fontWeight: FontWeight.bold),
                           )),
                         ],
                       ),
@@ -127,25 +120,18 @@ class DetailPark extends StatelessWidget {
                     ),
                     const Spacing(),
                     Text(
-                      this.informasi,
+                      informasi,
                       style: bodyText.copyWith(color: Colors.white),
                     ),
                     const Spacing(),
                     Center(
                       child: ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(colorPrimary),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16))),
-                            minimumSize: MaterialStateProperty.all(
-                                Size(size.width / 1.4, 37))),
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(colorPrimary), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))), minimumSize: MaterialStateProperty.all(Size(size.width / 1.4, 37))),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Maps(),
+                              builder: (context) => const Maps(),
                             ),
                           );
                         },
@@ -164,6 +150,93 @@ class DetailPark extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class ProductNameAndPrice extends StatelessWidget {
+  final String nama;
+  final String lokasi;
+  const ProductNameAndPrice(this.nama, this.lokasi, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
+              nama,
+              style: h1Light.copyWith(color: Colors.white),
+            ),
+          ),
+          Text(
+            lokasi,
+            style: h1Light.copyWith(color: colorPrimary, fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RectButton extends StatelessWidget {
+  final String label;
+  const RectButton({
+    Key? key,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 14),
+      height: 32,
+      width: 32,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), border: Border.all(color: colorPrimary)),
+      child: Center(
+          child: Text(
+        label,
+        style: text.copyWith(color: Colors.white),
+      )),
+    );
+  }
+}
+
+class RectButtonSelected extends StatelessWidget {
+  final String label;
+  const RectButtonSelected({
+    Key? key,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 14),
+      height: 32,
+      width: 32,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), gradient: colorGradient),
+      child: Center(
+          child: Text(
+        label,
+        style: text,
+      )),
+    );
+  }
+}
+
+class Spacing extends StatelessWidget {
+  const Spacing({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 16,
     );
   }
 }
@@ -199,97 +272,6 @@ class TabTitle extends StatelessWidget {
             )
         ])
       ],
-    );
-  }
-}
-
-class Spacing extends StatelessWidget {
-  const Spacing({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 16,
-    );
-  }
-}
-
-class RectButtonSelected extends StatelessWidget {
-  final String label;
-  const RectButtonSelected({
-    Key? key,
-    required this.label,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 14),
-      height: 32,
-      width: 32,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(9), gradient: colorGradient),
-      child: Center(
-          child: Text(
-        label,
-        style: text,
-      )),
-    );
-  }
-}
-
-class RectButton extends StatelessWidget {
-  final String label;
-  const RectButton({
-    Key? key,
-    required this.label,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 14),
-      height: 32,
-      width: 32,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(9),
-          border: Border.all(color: colorPrimary)),
-      child: Center(
-          child: Text(
-        label,
-        style: text.copyWith(color: Colors.white),
-      )),
-    );
-  }
-}
-
-class ProductNameAndPrice extends StatelessWidget {
-  final String nama;
-  final String lokasi;
-  ProductNameAndPrice(this.nama, this.lokasi);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Text(
-              this.nama,
-              style: h1Light.copyWith(color: Colors.white),
-            ),
-          ),
-          Text(
-            this.lokasi,
-            style: h1Light.copyWith(
-                color: colorPrimary, fontWeight: FontWeight.w600),
-          ),
-        ],
-      ),
     );
   }
 }

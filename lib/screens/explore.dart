@@ -32,11 +32,11 @@ class Explore extends StatelessWidget {
           ),
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Explore",
                     style: TextStyle(
                       color: Colors.white,
@@ -50,14 +50,14 @@ class Explore extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Sistem Informasi",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "Parawisata Sulawesi Tenggara",
                         style: TextStyle(
                           color: Colors.white,
@@ -65,7 +65,7 @@ class Explore extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       ElevatedButton(
@@ -73,19 +73,19 @@ class Explore extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Home(),
+                              builder: (context) => const Home(),
                             ),
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: colorPrimary,
+                          backgroundColor: colorPrimary,
                           minimumSize: const Size.fromHeight(50),
-                          shape: StadiumBorder(),
+                          shape: const StadiumBorder(),
                           elevation: 0,
                         ),
-                        child: Text("Explore Now"),
+                        child: const Text("Explore Now"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                     ],

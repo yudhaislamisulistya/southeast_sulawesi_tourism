@@ -1,8 +1,9 @@
+// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api, unused_local_variable
+
+import 'package:accordion/accordion.dart';
+import 'package:accordion/controllers.dart';
 import 'package:bella_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:accordion/accordion.dart';
-import 'package:accordion/accordion_section.dart';
-import 'package:accordion/controllers.dart';
 
 class About extends StatefulWidget {
   const About({Key? key}) : super(key: key);
@@ -14,18 +15,12 @@ class About extends StatefulWidget {
 class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
-    final _headerStyle = const TextStyle(
-        color: Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.bold);
-    final _contentStyleHeader = const TextStyle(
-        color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.w700);
-    final _contentStyle = const TextStyle(
-        color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.normal);
-    final _caraLihatMap =
-        '''Silahkan mengunjungi halaman dashboard atau map dan melihat melihat informasi pada map yang telah disediakan.''';
-    final _tentangAplikasi =
-        '''Aplikasi ini berjalan pada android minimal versi API 28.''';
-    final _introduction =
-        '''Aplikasi in sebuah aplikasi yang dirancang untuk menampilkan informasi parawisata didaerah sulawesi tenggarah. Aplikasi ini dibuat untuk memenuhi tugas akhir dari penelitian saya''';
+    const headerStyle = TextStyle(color: Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.bold);
+    const contentStyleHeader = TextStyle(color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.w700);
+    const contentStyle = TextStyle(color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.normal);
+    const caraLihatMap = '''Silahkan mengunjungi halaman dashboard atau map dan melihat melihat informasi pada map yang telah disediakan.''';
+    const tentangAplikasi = '''Aplikasi ini berjalan pada android minimal versi API 28.''';
+    const introduction = '''Aplikasi in sebuah aplikasi yang dirancang untuk menampilkan informasi parawisata didaerah sulawesi tenggarah. Aplikasi ini dibuat untuk memenuhi tugas akhir dari penelitian saya''';
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       resizeToAvoidBottomInset: false,
@@ -36,19 +31,18 @@ class _AboutState extends State<About> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "About",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: colorAccent),
+                      style: TextStyle(fontWeight: FontWeight.bold, color: colorAccent),
                     ),
                     Row(
-                      children: [
+                      children: const [
                         Icon(
                           Icons.pin_drop,
                           color: colorPrimary,
@@ -70,18 +64,14 @@ class _AboutState extends State<About> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
-                Text(
+                const Text(
                   "Parawisata Sultra",
-                  style: TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.bold,
-                      color: colorAccent,
-                      letterSpacing: 2.0),
+                  style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold, color: colorAccent, letterSpacing: 2.0),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 Accordion(
@@ -91,19 +81,17 @@ class _AboutState extends State<About> {
                   headerBackgroundColorOpened: Colors.black54,
                   scaleWhenAnimating: true,
                   openAndCloseAnimation: true,
-                  headerPadding:
-                      const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                  headerPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
                   sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
                   sectionClosingHapticFeedback: SectionHapticFeedback.light,
                   children: [
                     AccordionSection(
                       isOpen: true,
-                      leftIcon: const Icon(Icons.insights_rounded,
-                          color: Colors.white),
+                      leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
                       headerBackgroundColor: Colors.black54,
                       headerBackgroundColorOpened: colorPrimary,
-                      header: Text('Introduction', style: _headerStyle),
-                      content: Text(_introduction, style: _contentStyle),
+                      header: const Text('Introduction', style: headerStyle),
+                      content: const Text(introduction, style: contentStyle),
                       contentHorizontalPadding: 20,
                       contentBorderWidth: 1,
                     ),
@@ -116,8 +104,7 @@ class _AboutState extends State<About> {
                   headerBackgroundColorOpened: Colors.black54,
                   scaleWhenAnimating: true,
                   openAndCloseAnimation: true,
-                  headerPadding:
-                      const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                  headerPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
                   sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
                   sectionClosingHapticFeedback: SectionHapticFeedback.light,
                   children: [
@@ -126,9 +113,8 @@ class _AboutState extends State<About> {
                       leftIcon: const Icon(Icons.map, color: Colors.white),
                       headerBackgroundColor: Colors.black54,
                       headerBackgroundColorOpened: colorPrimary,
-                      header: Text('Bagaiamana Cara Lihat Map ?',
-                          style: _headerStyle),
-                      content: Text(_caraLihatMap, style: _contentStyle),
+                      header: const Text('Bagaiamana Cara Lihat Map ?', style: headerStyle),
+                      content: const Text(caraLihatMap, style: contentStyle),
                       contentHorizontalPadding: 20,
                       contentBorderWidth: 1,
                     ),
@@ -141,19 +127,17 @@ class _AboutState extends State<About> {
                   headerBackgroundColorOpened: Colors.black54,
                   scaleWhenAnimating: true,
                   openAndCloseAnimation: true,
-                  headerPadding:
-                      const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                  headerPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
                   sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
                   sectionClosingHapticFeedback: SectionHapticFeedback.light,
                   children: [
                     AccordionSection(
                       isOpen: true,
-                      leftIcon: const Icon(Icons.app_settings_alt,
-                          color: Colors.white),
+                      leftIcon: const Icon(Icons.app_settings_alt, color: Colors.white),
                       headerBackgroundColor: Colors.black54,
                       headerBackgroundColorOpened: colorPrimary,
-                      header: Text('Tentang Aplikasi', style: _headerStyle),
-                      content: Text(_tentangAplikasi, style: _contentStyle),
+                      header: const Text('Tentang Aplikasi', style: headerStyle),
+                      content: const Text(tentangAplikasi, style: contentStyle),
                       contentHorizontalPadding: 20,
                       contentBorderWidth: 1,
                     ),
