@@ -47,7 +47,7 @@ class DetailPark extends StatelessWidget {
                 borderRadius: BorderRadius.circular(34),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(26.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
